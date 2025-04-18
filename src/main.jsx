@@ -4,6 +4,8 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './home'
 import { ClerkProvider } from '@clerk/clerk-react'
+import Index from './profile'
+import AddListing from './add-listing'
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -16,6 +18,14 @@ const router= createBrowserRouter(
     {
       path:"/",
       element:<Home/>
+    },
+    {
+      path:"/profile",
+      element:<Index/>
+    },
+    {
+      path:"/add-listing",
+      element:<AddListing/>
     }
   ]
 )
