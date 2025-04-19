@@ -48,6 +48,15 @@
         "column": 1,
         "icon": "FaCheckCircle"
       },
+      {
+        "label": "Type",
+        "name": "type",
+        "fieldType": "dropdown",
+        "options": ["Petrol", "Diesel", "Electric", "Hybrid"],
+        "required": true,
+        "column": 1,
+        "icon": "FaGasPump"
+      },
       
       {
         "label": "Make",
@@ -128,7 +137,7 @@
       },
       {
         "label": "Transmission",
-        "name": "transmission",
+        "name": "transimission",
         "fieldType": "dropdown",
         "options": ["Automatic", "Manual", "CVT"],
         "required": true,

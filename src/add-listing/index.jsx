@@ -4,14 +4,17 @@ import carDetails from "../components/Shared/carDetails.json";
 import InputField from "./components/InputField";
 import Dropdown from "./components/Dropdown";
 import TextAreaField from "./components/TextAreaField";
+import UploadImages from "./components/UploadImages";
 import { Separator } from "@/components/ui/separator";
 import features from "../components/Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { db } from "../../configs";
+import { Carlisting } from "../../configs/schema";
 
 function AddListing() {
   const [formData, setFormData] = useState([]);
-
+  const [featuresData, setFeaturesData] = useState([]);
   const handleInputChange = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -19,10 +22,31 @@ function AddListing() {
     }));
     
   };
+  const handleFeaturesChange = (name, value) => {
+    setFeaturesData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+    console.log(featuresData);
+  }
 
-  const onSubmit=(e)=>{
+  const onSubmit=async (e)=>{
     e.preventDefault();
-    console.log(formData)
+    console.log(formData);
+   
+    try {
+      const result= await db.insert(Carlisting).values({
+        ...formData,
+        features:featuresData
+      }
+      );
+      if(result){
+        alert("Listing added successfully")
+      }
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
   return (
     <div>
@@ -64,12 +88,14 @@ function AddListing() {
             <div className=" grid grid-cols-2 md:grid-cols-3 gap-2">
               {features.features.map((item, index) => (
                 <div className="flex gap-2 items-center" key={index}>
-                  <Checkbox onCheckedChange={(e)=>handleInputChange(item.name,e)} /> <h2>{item.label}</h2>
+                  <Checkbox onCheckedChange={(e)=>handleFeaturesChange(item.name,e)} /> <h2>{item.label}</h2>
                 </div>
               ))}
             </div>
           </div>
           {/* car images */}
+          <Separator className="my-6" />
+          <UploadImages/>
           <div className="mt-10 flex justify-end">
             <Button type="submit" > Submit</Button>
           </div>
