@@ -1,9 +1,54 @@
 {
-  "id": "ca1dbd73-8e46-47e3-b40f-5f7f7993483a",
+  "id": "05606665-e27b-49d6-a573-e7b40f1e5605",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.carImages": {
+      "name": "carImages",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "imageUrl": {
+          "name": "imageUrl",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "carListingId": {
+          "name": "carListingId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "carImages_carListingId_carListing_id_fk": {
+          "name": "carImages_carListingId_carListing_id_fk",
+          "tableFrom": "carImages",
+          "tableTo": "carListing",
+          "columnsFrom": [
+            "carListingId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.carListing": {
       "name": "carListing",
       "schema": "",
@@ -136,6 +181,24 @@
         },
         "listingDescription": {
           "name": "listingDescription",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "features": {
+          "name": "features",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdBy": {
+          "name": "createdBy",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
