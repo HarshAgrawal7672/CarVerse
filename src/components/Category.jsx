@@ -1,5 +1,6 @@
 import React from 'react'
 import Data from './Shared/Data'
+import { Link } from 'react-router-dom'
 
 function Category() {
   return (
@@ -9,11 +10,14 @@ function Category() {
         </h2>
         <div className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-6 px-20'>
             {Data.Category.map((category,index)=>(
-                <div className=' border rounded-md p-3 items-center flex flex-col hover:bg-amber-50 cursor-pointer hover:shadow-md'> 
+                <Link to={`/search/${category.name}`} key={index}>
+                 <div className=' border rounded-md p-3 items-center flex flex-col hover:bg-amber-50 cursor-pointer hover:shadow-md'> 
                     <img src={category.icon} width={35} height={35} />
                     <h2 className='mt-2'>{category.name}</h2>
                 </div>
+                </Link>
             ))}
+               
         </div>
       
     </div>

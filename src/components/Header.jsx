@@ -7,7 +7,9 @@ function Header() {
   const { user, isSignedIn } = useUser();
   return (
     <div className="flex justify-between items-center shadow-sm ">
+      <Link to="/">
       <img src={logo} width={100} height={50} alt="" />
+      </Link>
       <ul className=" hidden md:flex gap-16">
         <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary">
           Home

@@ -6,6 +6,7 @@ import Home from './home'
 import { ClerkProvider } from '@clerk/clerk-react'
 import Index from './profile'
 import AddListing from './add-listing'
+import SearchByCategory from './search/[category]'
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -26,6 +27,9 @@ const router= createBrowserRouter(
     {
       path:"/add-listing",
       element:<AddListing/>
+    },{
+      path:"/search/:category",
+      element:<SearchByCategory/>
     }
   ]
 )
